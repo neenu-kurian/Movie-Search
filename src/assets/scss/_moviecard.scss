@@ -1,9 +1,17 @@
 .movie {
-    &__container {
-        max-width: 80%;
-    }
+  &__container {
+    display: grid;
+    gap: 20px 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 90%;
+    margin: 0 auto;
+  }
 
-    &__tile {
-        padding: 10px;
-    }
+  &__tile {
+  }
+
+  &__link {
+    text-decoration: none;
+    color: black;
+  }
 }
