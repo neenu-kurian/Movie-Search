@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-for="(movie,index) in movies" :key="index">
+  <div class="movie__container">
+    <div class="movie__tile" v-for="(movie,index) in movies" :key="index">
       <img :src="movie.Poster" alt="movie" />
       <div>{{movie.Title}}</div>
       <div>{{movie.Year}}</div>
