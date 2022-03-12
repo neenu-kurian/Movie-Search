@@ -1,9 +1,11 @@
 <template>
   <div class="movie__container">
     <div class="movie__tile" v-for="(movie,index) in movies" :key="index">
-      <img :src="movie.Poster" alt="movie" />
-      <div>{{movie.Title}}</div>
-      <div>{{movie.Year}}</div>
+      <router-link class="nav-link" :to="`movie/${movie.imdbID}`">
+        <img :src="movie.Poster" alt="movie" />
+        <div>{{movie.Title}}</div>
+        <div>{{movie.Year}}</div>
+      </router-link>
     </div>
   </div>
 </template>
