@@ -1,7 +1,7 @@
 <template>
-  <div class="movie__container">
-    <div class="movie__tile" v-for="(movie,index) in movies" :key="index">
-      <router-link class="movie__link" :to="`movie/${movie.imdbID}`">
+  <div class="movie__container" v-if="!loading">
+    <div class="movie__tile" v-for="(movie,index) in movies" :key="index" >
+      <router-link class="movie__link" :to="`movie/${movie.Title}`">
         <img :src="movie.Poster" alt="movie" />
         <h2 class="movie__title">{{movie.Title}}</h2>
         <div class="movie__year">{{movie.Year}}</div>
@@ -12,12 +12,16 @@
 
 <script>
 import "../assets/scss/main.scss";
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "MovieCard",
   computed: {
-    ...mapGetters(["movies"]),
+    ...mapState(["loading"])
+  },
+  props:['movies'],
+  mounted() {
+    console.log("movies", this.movies);
   },
 };
 </script>

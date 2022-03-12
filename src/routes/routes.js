@@ -7,7 +7,7 @@ const routes =  [
         component: SearchPage,
     },
     {
-        path: '/movie/:id',
+        path: '/movie/:title',
         component: MovieDetail,
     },
 ]

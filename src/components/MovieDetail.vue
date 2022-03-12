@@ -47,7 +47,7 @@ export default {
       this.$router.push("/");
     },
     fetchMovieDetails() {
-      this.$store.dispatch("fetchMovieDetails", this.$route.params.id);
+      this.$store.dispatch("fetchMovieDetails", this.$route.params.title);
     },
   },
 };

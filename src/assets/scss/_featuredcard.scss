@@ -1,0 +1,22 @@
+.featured {
+    &__container {
+        display: flex;
+        max-width: 90%;
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+
+    &__tile {
+        flex: 1 1 0;
+    }
+
+    &__title,&__year,&__plot {
+        text-decoration: none;
+        color: white;
+    }
+
+    &__poster {
+        width: 80%;
+        height: 60%;
+    }
+}

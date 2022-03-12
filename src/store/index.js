@@ -9,7 +9,9 @@ const store = new Vuex.Store({
     movies: {},
     loading: false,
     movie: {},
+    featuredMovies: {},
     apikey: "6c3a2d45",
+    featured: ["tt0372784", "tt4154796"],
   },
   getters: {
     movies: (state) => state.movies.Search,
@@ -22,6 +24,9 @@ const store = new Vuex.Store({
     GET_MOVIE(state, payload) {
       state.movie = payload;
     },
+    SET_FEATURED_MOVIES(state,payload) {
+      state.featuredMovies = payload;
+    }
   },
   actions: {
     async fetchMovies({ commit, state }, payload) {
@@ -39,11 +44,28 @@ const store = new Vuex.Store({
     async fetchMovieDetails({ commit, state }, payload) {
       try {
         state.loading = true;
-        let url = `http://www.omdbapi.com/?apikey=${state.apikey}&i=${payload}`;
+        let url = `http://www.omdbapi.com/?apikey=${state.apikey}&t=${payload}&plot=full`;
         const res = await fetch(url);
         const data = await res.json();
         state.loading = false;
         commit("GET_MOVIE", data);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async fetchfeaturedMovies({ state }, payload) {
+      try {
+        state.loading = true;
+        let results = payload.map(async (eachMovie) => {
+          let url = `http://www.omdbapi.com/?apikey=${state.apikey}&i=${eachMovie}&plot=full`;
+          const res = await fetch(url);
+          const data = await res.json();
+          return data;
+        });
+        
+        const movies = await Promise.all(results);
+        this.commit("SET_FEATURED_MOVIES", movies);
+        state.loading = false;
       } catch (err) {
         console.log(err);
       }
