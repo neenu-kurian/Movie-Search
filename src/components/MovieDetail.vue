@@ -4,6 +4,14 @@
 
 <script>
 export default {
-    name: "MovieDetail"
+    name: "MovieDetail",
+    mounted() {
+        this.fetchMovieDetails();
+    },
+    methods: {
+        fetchMovieDetails() {
+            this.$store.dispatch("fetchMovieDetails",this.$route.params.id);
+        }
+    }
 }
 </script>
