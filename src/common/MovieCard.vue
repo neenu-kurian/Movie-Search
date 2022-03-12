@@ -3,8 +3,8 @@
     <div class="movie__tile" v-for="(movie,index) in movies" :key="index">
       <router-link class="movie__link" :to="`movie/${movie.imdbID}`">
         <img :src="movie.Poster" alt="movie" />
-        <h2>{{movie.Title}}</h2>
-        <div>{{movie.Year}}</div>
+        <h2 class="movie__title">{{movie.Title}}</h2>
+        <div class="movie__year">{{movie.Year}}</div>
       </router-link>
     </div>
   </div>

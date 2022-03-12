@@ -1,6 +1,6 @@
 .search {
     &__container {
-
+        padding: 30px 0;
     }
 
     &__bar {
@@ -23,7 +23,7 @@
         font-size: 20px;
         position: relative;
         top: 0;
-        background: transparent;
+        background: white;
         border: 1px solid black;
 
         &:hover {

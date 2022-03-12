@@ -14,5 +14,11 @@ export default {
 <style lang="scss">
 body {
   font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
+#app {
+  background: black;
+  min-height: 100vh;
 }
 </style>
