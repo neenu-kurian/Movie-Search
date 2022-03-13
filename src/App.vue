@@ -15,10 +15,10 @@ export default {
 body {
   font-family: 'Roboto', sans-serif;
   color: white;
+  background: black;
 }
 
 #app {
-  background: black;
   min-height: 100vh;
 }
 </style>

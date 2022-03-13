@@ -3,7 +3,7 @@
     <fade-loader :loading="loading" :color="color" class="movie__spinner"></fade-loader>
     <div class="detail__container" v-if="!loading">
       <div class="left">
-        <button class="detail__backbtn" @click="goToHome()">Back</button>
+         <Button type="text" name="back">Back</Button>
         <img class="detail__image" :src="movie.Poster" alt="movie" />
       </div>
       <div class="right">
@@ -40,6 +40,7 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 import FadeLoader from "vue-spinner/src/FadeLoader.vue";
+import Button from "../common/Button.vue";
 import "../assets/scss/main.scss";
 
 export default {
@@ -55,6 +56,7 @@ export default {
   },
   components: {
     FadeLoader,
+    Button
   },
   mounted() {
     this.fetchMovieDetails();
@@ -63,9 +65,6 @@ export default {
     this.$store.commit("CLEAR_MOVIE_DETAILS");
   },
   methods: {
-    goToHome() {
-      this.$router.push("/");
-    },
     fetchMovieDetails() {
       this.$store.dispatch("fetchMovieDetails", this.$route.params.title);
     },

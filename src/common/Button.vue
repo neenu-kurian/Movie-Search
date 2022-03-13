@@ -1,0 +1,24 @@
+<template>
+  <button :type="type" class="btn--primary" :name="name" @click="handleClick">
+    <slot>Search</slot>
+  </button>
+</template>
+
+<script>
+import "../assets/scss/main.scss";
+
+export default {
+  name: "Button",
+  props: {
+    type: String,
+    name: String
+  },
+  methods: {
+    handleClick() {
+        if(this.name==="back") {
+            this.$router.push("/");
+        }
+    }
+  },
+};
+</script>

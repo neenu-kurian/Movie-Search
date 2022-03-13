@@ -8,9 +8,9 @@
         placeholder="Search movies or series..."
         class="search__bar"
       />
-      <button class="search__btn" type="submit">Search</button>
+      <Button type="submit">Search</Button>
     </form>
-    <div v-if="showFeatured">
+    <div v-if="showFeatured" class="featured">
       <h1 class="featured-text">FEATURED</h1>
       <movie-card :movies="featuredMovies" type="featured"></movie-card>
     </div>
@@ -24,6 +24,7 @@
 import { mapGetters, mapState } from "vuex";
 import "../assets/scss/main.scss";
 import MovieCard from "../common/MovieCard.vue";
+import Button from "../common/Button.vue";
 
 export default {
   name: "SearchPage",
@@ -38,19 +39,18 @@ export default {
     ...mapGetters(["movies"]),
   },
   mounted() {
-    this.fetchfeaturedMovies();
+      this.fetchfeaturedMovies();
   },
-  components: { MovieCard },
+  components: { MovieCard,Button },
   methods: {
     searchMovies(e) {
       e.preventDefault();
-     
-      if(!this.search) {
+
+      if (!this.search) {
         this.showFeatured = true;
         this.fetchfeaturedMovies();
-      }
-      else {
-        this.showFeatured=false;
+      } else {
+        this.showFeatured = false;
         this.$store.dispatch("fetchMovies", this.search);
       }
     },

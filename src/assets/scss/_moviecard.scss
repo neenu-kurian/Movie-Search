@@ -43,3 +43,24 @@
     font-size: 18px;
   }
 }
+
+.featured {
+    .movie__wrapper {
+        width: 60%;
+    }
+
+    .featured-text {
+        text-align: center;
+        padding-bottom: 10px;
+        border-bottom: 2px solid lightgray;
+        width: 60%;
+    }
+}
+
+@media (max-width: 600px) {
+    .featured {
+        .movie__wrapper {
+            width: 100%;
+        }
+    }
+}
