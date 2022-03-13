@@ -9,7 +9,7 @@
       <div class="right">
         <div class="detail__wrapper">
           <h1 class="detail__title">{{ movie.Title }}</h1>
-          <span>{{ movie.Ratings[0].Value }}</span>
+          <span v-if="movie.Ratings">{{ movie.Ratings[0].Value }}</span>
           <div class="detail__year">{{ movie.Type }} | {{ movie.Year }}</div>
           <div class="detail__overview">
             <h2 class="detail__text">OVERVIEW</h2>
