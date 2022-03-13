@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     ...mapState(["featured", "featuredMovies"]),
-    ...mapGetters(["movies"])
+    ...mapGetters(["movies"]),
   },
   mounted() {
     this.fetchfeaturedMovies();

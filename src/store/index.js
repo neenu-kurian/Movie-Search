@@ -16,6 +16,7 @@ const store = new Vuex.Store({
   getters: {
     movies: (state) => state.movies.Search,
     movie: (state) => state.movie,
+    error: (state) => state.movies.Response
   },
   mutations: {
     GET_MOVIES(state, payload) {

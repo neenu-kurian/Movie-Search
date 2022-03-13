@@ -2,7 +2,10 @@
   <div class="movie__container">
     <fade-loader :loading="loading" :color="color" class="movie__spinner"></fade-loader>
     <div class="movie__wrapper" v-if="!loading">
-      <div class="movie__tile" v-for="(movie,index) in movies" :key="index">
+      <div v-if="error==='False'">
+        <result-error></result-error>
+      </div>
+      <div v-else class="movie__tile" v-for="(movie,index) in movies" :key="index">
         <router-link class="movie__link" :to="`movie/${movie.Title}`">
           <img class="movie__img" v-if="movie.Poster!=='N/A'" :src="movie.Poster" alt="movie" />
           <img class="movie__img" src="../assets/images/default.jpeg" v-else alt="fallback" />
@@ -18,8 +21,9 @@
 
 <script>
 import "../assets/scss/main.scss";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import FadeLoader from "vue-spinner/src/FadeLoader.vue";
+import ResultError from "./ResultError.vue";
 
 export default {
   name: "MovieCard",
@@ -30,9 +34,11 @@ export default {
   },
   computed: {
     ...mapState(["loading"]),
+    ...mapGetters(["error"]),
   },
   components: {
     FadeLoader,
+    ResultError,
   },
   props: ["movies", "type"],
 };
