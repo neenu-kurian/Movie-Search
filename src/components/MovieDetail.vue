@@ -1,31 +1,35 @@
 <template>
-  <div class="detail__container">
-    <div class="left">
-      <button class="detail__backbtn" @click="goToHome()">Back</button>
-      <img class="detail__image" :src="movie.Poster" alt="movie" />
-    </div>
-    <div class="right">
-      <div class="detail__wrapper">
-        <h1 class="detail__title">{{ movie.Title }}</h1>
-        <span>{{ movie.Ratings[0].Value }}</span>
-        <div class="detail__year">{{ movie.Type }} | {{ movie.Year }}</div>
-        <div class="detail__overview">
-          <h2 class="detail__text">OVERVIEW</h2>
-          <div class="detail__movie--plot">{{movie.Plot}}</div>
-          <div class="detail__cast">
-            <span class="detail__movie--text">Genre:</span>
-            {{ movie.Genre }}
-          </div>
-          <div class="detail__cast">
-            <span class="detail__movie--text">Created by:</span>
-            {{ movie.Director }}
-          </div>
-          <div class="detail__cast">
-            <span class="detail__movie--text">Starring:</span>
-            {{ movie.Actors }}
-          </div><div class="detail__cast">
-            <span class="detail__movie--text">Awards:</span>
-            {{ movie.Awards }}
+  <div class="detail__movie">
+    <fade-loader :loading="loading" :color="color" class="movie__spinner"></fade-loader>
+    <div class="detail__container" v-if="!loading">
+      <div class="left">
+        <button class="detail__backbtn" @click="goToHome()">Back</button>
+        <img class="detail__image" :src="movie.Poster" alt="movie" />
+      </div>
+      <div class="right">
+        <div class="detail__wrapper">
+          <h1 class="detail__title">{{ movie.Title }}</h1>
+          <span>{{ movie.Ratings[0].Value }}</span>
+          <div class="detail__year">{{ movie.Type }} | {{ movie.Year }}</div>
+          <div class="detail__overview">
+            <h2 class="detail__text">OVERVIEW</h2>
+            <div class="detail__movie--plot">{{movie.Plot}}</div>
+            <div class="detail__cast">
+              <span class="detail__movie--text">Genre:</span>
+              {{ movie.Genre }}
+            </div>
+            <div class="detail__cast">
+              <span class="detail__movie--text">Created by:</span>
+              {{ movie.Director }}
+            </div>
+            <div class="detail__cast">
+              <span class="detail__movie--text">Starring:</span>
+              {{ movie.Actors }}
+            </div>
+            <div class="detail__cast">
+              <span class="detail__movie--text">Awards:</span>
+              {{ movie.Awards }}
+            </div>
           </div>
         </div>
       </div>
@@ -34,16 +38,29 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
+import FadeLoader from "vue-spinner/src/FadeLoader.vue";
 import "../assets/scss/main.scss";
 
 export default {
   name: "MovieDetail",
+  data: function () {
+    return {
+      color: "#FFFFFF",
+    };
+  },
   computed: {
     ...mapGetters(["movie"]),
+    ...mapState(["loading"])
+  },
+  components: {
+    FadeLoader,
   },
   mounted() {
     this.fetchMovieDetails();
+  },
+  beforeDestroy() {
+    this.$store.commit("CLEAR_MOVIE_DETAILS");
   },
   methods: {
     goToHome() {

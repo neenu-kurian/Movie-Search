@@ -26,6 +26,9 @@ const store = new Vuex.Store({
     },
     SET_FEATURED_MOVIES(state,payload) {
       state.featuredMovies = payload;
+    },
+    CLEAR_MOVIE_DETAILS(state){
+      state.movie={}
     }
   },
   actions: {
