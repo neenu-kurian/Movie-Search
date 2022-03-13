@@ -44,8 +44,15 @@ export default {
   methods: {
     searchMovies(e) {
       e.preventDefault();
-      this.showFeatured = false;
-      this.$store.dispatch("fetchMovies", this.search);
+     
+      if(!this.search) {
+        this.showFeatured = true;
+        this.fetchfeaturedMovies();
+      }
+      else {
+        this.showFeatured=false;
+        this.$store.dispatch("fetchMovies", this.search);
+      }
     },
     fetchfeaturedMovies() {
       this.$store.dispatch("fetchfeaturedMovies", this.featured);
