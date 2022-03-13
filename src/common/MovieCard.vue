@@ -4,7 +4,8 @@
     <div class="movie__wrapper" v-if="!loading">
       <div class="movie__tile" v-for="(movie,index) in movies" :key="index">
         <router-link class="movie__link" :to="`movie/${movie.Title}`">
-          <img :src="movie.Poster" alt="movie" />
+          <img class="movie__img" v-if="movie.Poster!=='N/A'" :src="movie.Poster" alt="movie" />
+          <img class="movie__img" src="../assets/images/default.jpeg" v-else alt="fallback" />
           <h2 class="movie__title">{{movie.Title}}</h2>
           <div class="movie__year">{{movie.Year}}</div>
           <div class="movie__awards" v-if="type==='featured'">{{movie.Awards}}</div>
