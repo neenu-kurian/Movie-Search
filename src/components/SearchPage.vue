@@ -1,21 +1,21 @@
 <template>
   <div class="search__container">
-    <div class="search__wrapper">
+    <form class="search__wrapper" @submit="searchMovies">
       <input
         type="text"
         v-model="search"
         name="search"
-        placeholder="Search movies..."
+        placeholder="Search movies or series..."
         class="search__bar"
       />
-      <button class="search__btn" @click="searchMovies">Search</button>
-    </div>
+      <button class="search__btn" type="submit">Search</button>
+    </form>
     <div v-if="showFeatured">
-      <h1>Featured</h1>
-      <movie-card :movies="featuredMovies"></movie-card>
+      <h1 class="featured-text">FEATURED</h1>
+      <movie-card :movies="featuredMovies" type="featured"></movie-card>
     </div>
     <div v-else>
-      <movie-card :movies="movies"></movie-card>
+      <movie-card :movies="movies" type="movies"></movie-card>
     </div>
   </div>
 </template>
@@ -42,7 +42,8 @@ export default {
   },
   components: { MovieCard },
   methods: {
-    searchMovies() {
+    searchMovies(e) {
+      e.preventDefault();
       this.showFeatured = false;
       this.$store.dispatch("fetchMovies", this.search);
     },

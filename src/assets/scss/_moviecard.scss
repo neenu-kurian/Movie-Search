@@ -7,12 +7,28 @@
     margin: 0 auto;
   }
 
-  &__title,&__year {
-      color: white;
+  &__title {
+    color: white;
+  }
+
+  &__year,
+  &__plot {
+    color: lightgray;
+  }
+
+  &__plot {
+    font-size: 16px;
+    font-weight: 200;
   }
 
   &__link {
     text-decoration: none;
     color: black;
+  }
+
+  &__awards {
+    color: white;
+    margin: 10px 0;
+    font-size: 18px;
   }
 }

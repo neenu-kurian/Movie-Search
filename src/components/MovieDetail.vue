@@ -23,6 +23,9 @@
           <div class="detail__cast">
             <span class="detail__movie--text">Starring:</span>
             {{ movie.Actors }}
+          </div><div class="detail__cast">
+            <span class="detail__movie--text">Awards:</span>
+            {{ movie.Awards }}
           </div>
         </div>
       </div>
