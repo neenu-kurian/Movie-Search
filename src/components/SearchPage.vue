@@ -1,6 +1,6 @@
 <template>
   <div class="search__container">
-    <form class="search__wrapper" @submit="searchMovies">
+    <form class="search__wrapper" @submit.prevent="searchMovies">
       <input
         type="text"
         v-model="search"
@@ -33,20 +33,30 @@ export default {
     return {
       search: "",
       showFeatured: true,
-      color: '#FFFFFF'
+      color: "#FFFFFF",
+      featured: ["tt0372784", "tt4154796"],
     };
   },
   computed: {
-    ...mapState(["featured", "featuredMovies","loading"]),
-    ...mapGetters(["movies","error"]),
+    ...mapState(["featuredMovies", "loading"]),
+    ...mapGetters(["movies", "error"]),
+    // : {
+    //     get() {
+    //         return this.search;
+    //     },
+
+    //     set(newValue) {
+    //         this.updatedInputValue = this.search;
+    //     }
+    // }
+
   },
   mounted() {
-      this.fetchfeaturedMovies();
+    this.fetchfeaturedMovies();
   },
-  components: { MovieCard,Button,FadeLoader },
+  components: { MovieCard, Button, FadeLoader },
   methods: {
-    searchMovies(e) {
-      e.preventDefault();
+    searchMovies() {
       if (!this.search) {
         this.showFeatured = true;
         this.fetchfeaturedMovies();
