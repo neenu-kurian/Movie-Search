@@ -5,12 +5,12 @@
     position: relative;
     top: 0;
     background: transparent;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid $white;
+    color: $white;
     text-transform: uppercase;
 
     &:hover {
-      color: black;
-      background-color: white;
+      color: $black;
+      background-color: $white;
     }
   }

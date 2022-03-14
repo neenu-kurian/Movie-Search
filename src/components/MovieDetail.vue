@@ -3,7 +3,7 @@
     <fade-loader :loading="loading" :color="color" class="movie__spinner"></fade-loader>
     <div class="detail__container" v-if="!loading">
       <div class="left">
-         <Button type="text" name="back">Back</Button>
+        <Button type="text" name="back">Back</Button>
         <img class="detail__image" :src="movie.Poster" alt="movie" />
       </div>
       <div class="right">
@@ -14,22 +14,22 @@
           <div class="detail__overview">
             <h2 class="detail__text">OVERVIEW</h2>
             <div class="detail__movie--plot">{{movie.Plot}}</div>
-            <div class="detail__cast">
-              <span class="detail__movie--text">Genre:</span>
-              {{ movie.Genre }}
-            </div>
-            <div class="detail__cast">
-              <span class="detail__movie--text">Created by:</span>
-              {{ movie.Director }}
-            </div>
-            <div class="detail__cast">
-              <span class="detail__movie--text">Starring:</span>
-              {{ movie.Actors }}
-            </div>
-            <div class="detail__cast">
-              <span class="detail__movie--text">Awards:</span>
-              {{ movie.Awards }}
-            </div>
+            <movie-list-item>
+              <template v-slot:type>Genre:</template>
+              <template v-slot:info>{{movie.Genre}}</template>
+            </movie-list-item>
+             <movie-list-item>
+              <template v-slot:type>Created by:</template>
+              <template v-slot:info>{{ movie.Director }}</template>
+            </movie-list-item>
+            <movie-list-item>
+              <template v-slot:type>Starring:</template>
+              <template v-slot:info> {{ movie.Actors }}</template>
+            </movie-list-item>
+            <movie-list-item>
+              <template v-slot:type>Awards:</template>
+              <template v-slot:info> {{ movie.Awards }}</template>
+            </movie-list-item>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
 import { mapGetters, mapState } from "vuex";
 import FadeLoader from "vue-spinner/src/FadeLoader.vue";
 import Button from "../common/Button.vue";
-import "../assets/scss/main.scss";
+import MovieListItem from "../common/MovieListItem.vue";
 
 export default {
   name: "MovieDetail",
@@ -52,11 +52,12 @@ export default {
   },
   computed: {
     ...mapGetters(["movie"]),
-    ...mapState(["loading"])
+    ...mapState(["loading"]),
   },
   components: {
     FadeLoader,
-    Button
+    Button,
+    MovieListItem,
   },
   mounted() {
     this.fetchMovieDetails();

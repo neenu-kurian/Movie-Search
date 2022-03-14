@@ -10,6 +10,7 @@
       />
       <Button type="submit">Search</Button>
     </form>
+    <fade-loader :loading="loading" :color="color" class="movie__spinner"></fade-loader>
     <div v-if="showFeatured" class="featured">
       <h1 class="featured-text">FEATURED</h1>
       <movie-card :movies="featuredMovies" type="featured"></movie-card>
@@ -22,9 +23,9 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-import "../assets/scss/main.scss";
 import MovieCard from "../common/MovieCard.vue";
 import Button from "../common/Button.vue";
+import FadeLoader from "vue-spinner/src/FadeLoader.vue";
 
 export default {
   name: "SearchPage",
@@ -32,20 +33,20 @@ export default {
     return {
       search: "",
       showFeatured: true,
+      color: '#FFFFFF'
     };
   },
   computed: {
-    ...mapState(["featured", "featuredMovies"]),
-    ...mapGetters(["movies"]),
+    ...mapState(["featured", "featuredMovies","loading"]),
+    ...mapGetters(["movies","error"]),
   },
   mounted() {
       this.fetchfeaturedMovies();
   },
-  components: { MovieCard,Button },
+  components: { MovieCard,Button,FadeLoader },
   methods: {
     searchMovies(e) {
       e.preventDefault();
-
       if (!this.search) {
         this.showFeatured = true;
         this.fetchfeaturedMovies();

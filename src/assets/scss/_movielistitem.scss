@@ -1,0 +1,11 @@
+.movie {
+  &__listitems {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  &__item {
+    color: $lightgrey;
+    margin-right: 10px;
+  }
+}
