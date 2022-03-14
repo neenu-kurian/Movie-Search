@@ -25,3 +25,13 @@
   max-width: 90%;
   margin: 0 auto 40px;
 }
+
+body {
+  font-family: $main-family;
+  color: $white;
+  background: $black;
+}
+
+#app {
+  min-height: 100vh;
+}

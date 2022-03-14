@@ -22,7 +22,6 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-import "../assets/scss/main.scss";
 import MovieCard from "../common/MovieCard.vue";
 import Button from "../common/Button.vue";
 
@@ -45,7 +44,6 @@ export default {
   methods: {
     searchMovies(e) {
       e.preventDefault();
-
       if (!this.search) {
         this.showFeatured = true;
         this.fetchfeaturedMovies();

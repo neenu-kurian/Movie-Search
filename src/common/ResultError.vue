@@ -5,10 +5,10 @@
     </div>
     <div class="error__text">
       <div v-if="movies.Error==='Movie not found!'">
-        <p class="error__message">Sorry, we couldnt find any results. Please try another movie</p>
+        <error-text>Sorry, we couldnt find any results. Please try another movie</error-text>
       </div>
       <div v-if="movies.Error==='Too many results.'">
-        <p class="error__message">Oops, looks like there are too many results, Please try to refine your search</p>
+        <error-text>Oops, looks like there are too many results, Please try to refine your search</error-text>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-import "../assets/scss/main.scss";
+import ErrorText from "../common/ErrorText.vue";
 
 export default {
   name: "ResultError",
@@ -24,5 +24,8 @@ export default {
     ...mapGetters(["movie"]),
     ...mapState(["movies"])
   },
+  components: {
+      ErrorText
+  }
 };
 </script>

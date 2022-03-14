@@ -41,7 +41,6 @@
 import { mapGetters, mapState } from "vuex";
 import FadeLoader from "vue-spinner/src/FadeLoader.vue";
 import Button from "../common/Button.vue";
-import "../assets/scss/main.scss";
 
 export default {
   name: "MovieDetail",
