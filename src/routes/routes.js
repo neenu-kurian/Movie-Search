@@ -6,6 +6,15 @@ const routes =  [
     {
         path: '/',
         component: SearchPage,
+        redirect: '/search'
+    },
+    {
+        path: '/search',
+        component: SearchPage,
+    },
+    {
+        path: '/search/:searchtext',
+        component: SearchPage,
     },
     {
         path: '/movie/:title',

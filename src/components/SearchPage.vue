@@ -10,7 +10,11 @@
       />
       <Button type="submit">Search</Button>
     </form>
-    <fade-loader :loading="loading" :color="color" class="movie__spinner"></fade-loader>
+    <fade-loader
+      :loading="loading"
+      :color="color"
+      class="movie__spinner"
+    ></fade-loader>
     <div v-if="showFeatured" class="featured">
       <h1 class="featured-text">FEATURED</h1>
       <movie-card :movies="featuredMovies" type="featured"></movie-card>
@@ -39,34 +43,36 @@ export default {
   },
   computed: {
     ...mapState(["featuredMovies", "loading"]),
-    ...mapGetters(["movies", "error"]),
-    // : {
-    //     get() {
-    //         return this.search;
-    //     },
-
-    //     set(newValue) {
-    //         this.updatedInputValue = this.search;
-    //     }
-    // }
-
+    ...mapGetters(["movies", "error", "searchText"]),
   },
   mounted() {
-    this.fetchfeaturedMovies();
+    this.search = this.searchText;
+
+    if (this.searchText) {
+      this.showFeatured = false;
+    } else {
+      this.showFeatured = true;
+      this.fetchfeaturedMovies();
+    }
   },
   components: { MovieCard, Button, FadeLoader },
   methods: {
     searchMovies() {
+      this.$store.commit("SET_SEARCH", this.search);
+      
       if (!this.search) {
         this.showFeatured = true;
-        this.fetchfeaturedMovies();
       } else {
         this.showFeatured = false;
-        this.$store.dispatch("fetchMovies", this.search);
+        this.fetchMovies();
+        this.$router.push(`/search/${this.search}`);
       }
     },
     fetchfeaturedMovies() {
       this.$store.dispatch("fetchfeaturedMovies", this.featured);
+    },
+    fetchMovies() {
+      this.$store.dispatch("fetchMovies", this.search);
     },
   },
 };

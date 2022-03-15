@@ -11,6 +11,9 @@ const mutations = {
   CLEAR_MOVIE_DETAILS(state) {
     state.movie = {};
   },
+  SET_SEARCH(state, payload) {
+    state.searchText = payload;
+  },
 };
 
 export default mutations;

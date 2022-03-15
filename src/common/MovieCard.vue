@@ -5,7 +5,7 @@
         <result-error></result-error>
       </div>
       <div v-else class="movie__tile" v-for="({Title,Poster,Awards,Plot,Year},index) in movies" :key="index">
-        <router-link class="movie__link" :to="`movie/${Title}`">
+        <router-link class="movie__link" :to="`/movie/${Title}`">
           <img class="movie__img" v-if="Poster!=='N/A'" :src="Poster" alt="movie" />
           <img class="movie__img" src="../assets/images/default.jpeg" v-else alt="fallback" />
           <h2 class="movie__title">{{Title}}</h2>

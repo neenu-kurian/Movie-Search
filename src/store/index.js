@@ -14,6 +14,7 @@ const store = new Vuex.Store({
     movie: {},
     featuredMovies: {},
     apikey: "6c3a2d45",
+    searchText:""
   },
   getters: getters,
   mutations: mutations,
