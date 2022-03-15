@@ -1,7 +1,7 @@
 <template>
   <div class="movie__container">
     <div class="movie__wrapper" v-if="!loading">
-      <div v-if="error==='False'">
+      <div v-if="error==='False' && searchText">
         <result-error></result-error>
       </div>
       <div v-else class="movie__tile" v-for="({Title,Poster,Awards,Plot,Year},index) in movies" :key="index">
@@ -26,7 +26,7 @@ export default {
   name: "MovieCard",
   computed: {
     ...mapState(["loading"]),
-    ...mapGetters(["error"]),
+    ...mapGetters(["error","searchText"]),
   },
   components: {
     ResultError,

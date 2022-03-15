@@ -15,7 +15,7 @@ export default {
   methods: {
     handleClick() {
         if(this.name==="back") {
-          this.$router.push("/search");
+          this.$router.go(-1);
         }
     }
   },

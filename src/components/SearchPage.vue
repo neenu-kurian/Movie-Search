@@ -59,9 +59,10 @@ export default {
   methods: {
     searchMovies() {
       this.$store.commit("SET_SEARCH", this.search);
-      
+
       if (!this.search) {
         this.showFeatured = true;
+        this.$router.push(`/search/`);
       } else {
         this.showFeatured = false;
         this.fetchMovies();
