@@ -47,14 +47,13 @@ export default {
   },
   created() {
     this.search = this.searchText;
-
     if (this.searchText) {
       this.showFeatured = false;
     } else {
       this.showFeatured = true;
       this.fetchfeaturedMovies();
     }
-  },
+  }, 
   components: { MovieCard, Button, FadeLoader },
   methods: {
     searchMovies() {

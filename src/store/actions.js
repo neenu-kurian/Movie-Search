@@ -23,7 +23,7 @@ const actions = {
       console.log(err);
     }
   },
-  async fetchfeaturedMovies({ state }, payload) {
+  async fetchfeaturedMovies({ commit, state }, payload) {
     try {
       state.loading = true;
       let results = payload.map(async (eachMovie) => {
@@ -34,7 +34,7 @@ const actions = {
       });
 
       const movies = await Promise.all(results);
-      this.commit("SET_FEATURED_MOVIES", movies);
+      commit("SET_FEATURED_MOVIES", movies);
       state.loading = false;
     } catch (err) {
       console.log(err);
