@@ -65,7 +65,7 @@ export default {
     Button,
     MovieListItem,
   },
-  mounted() {
+  created() {
     this.fetchMovieDetails();
   },
   beforeDestroy() {

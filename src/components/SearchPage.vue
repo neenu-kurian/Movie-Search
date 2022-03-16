@@ -45,7 +45,7 @@ export default {
     ...mapState(["featuredMovies", "loading"]),
     ...mapGetters(["movies", "error", "searchText"]),
   },
-  mounted() {
+  created() {
     this.search = this.searchText;
 
     if (this.searchText) {
